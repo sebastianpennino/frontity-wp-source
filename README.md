@@ -1,3 +1,39 @@
+# Important: this is a fork of `@frontity/wp-source` v1.11.2 (as it was on 3/27/2021)
+
+I've added a few changes that actually lets me send the auth value on `frontity.settings.js` like so:
+```
+    {
+      name: "@frontity/wp-source",
+      state: {
+        source: {
+          url: "www.your-wordpress-site-here.com"
+          auth: "Basic yourKeyHere"
+        },
+```
+or simply using the env `FRONTITY_SOURCE_AUTH` (as it should [see this PR](https://github.com/frontity/api-reference/pull/24)).
+
+Useful links:
+- How to use this on your project https://www.pluralsight.com/guides/how-to-use-forked-npm-dependencies
+(basically add this line in your package.json 
+```
+"@frontity/wp-source": "https://github.com/sebastianpennino/frontity-wp-source.git",
+```
+
+Reading material (that didn't help me!):
+- https://api.frontity.org/frontity-packages/features-packages/wp-source
+- https://community.frontity.org/t/auth-header-in-source-packages-and-frontity-query-options/2678
+- https://github.com/frontity/frontity/pull/568
+- https://community.frontity.org/t/how-to-implement-basic-authentication/1215
+- https://community.frontity.org/t/send-authorization-header/1941
+- https://community.frontity.org/t/how-can-i-add-a-bearer-token-to-the-auth-headers/3580/2
+- https://community.frontity.org/t/frontity-wp-source-returns-internal-server-error/3710
+- https://gitlab.com/hugosilva123/git_tan_project
+- https://github.com/frontity/api-reference/pull/24
+
+I've also posted a help request on the community forums here. https://community.frontity.org/t/auth-how-to-configure-basic-auth-on-all-my-calls/4320/1 Will update or remove this fork if it gets solved.
+
+Original documentation below.
+
 # `@frontity/wp-source`
 
 [![Version](https://img.shields.io/npm/v/@frontity/wp-source.svg)](https://www.npmjs.com/package/@frontity/wp-source) [![npm](https://img.shields.io/npm/dw/@frontity/wp-source)](https://www.npmjs.com/package/@frontity/wp-source) [![License: Apache--2.0](https://img.shields.io/badge/license-Apache%202-lightgrey)](https://github.com/frontity/frontity/blob/master/LICENSE)
