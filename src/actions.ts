@@ -191,8 +191,6 @@ const actions: WpSource["actions"]["source"] = {
       error("Add the URL of your WordPress REST API in state.source.api.");
     }
 
-    libraries.source.api.init({ api, isWpCom });
-
     // If the URL contains an auth token, then add it to the state. This is
     // normally the case e.g, when accessing the post preview.
     const auth = state.frontity?.options?.sourceAuth;
@@ -200,6 +198,10 @@ const actions: WpSource["actions"]["source"] = {
     if (auth || authFromEnv) {
       state.source.auth = auth || authFromEnv;
     }
+
+    const updatedAuth = state.source.auth;
+
+    libraries.source.api.init({ api, isWpCom, auth: updatedAuth });
 
     // Handlers & redirections.
     const { handlers, redirections } = libraries.source;

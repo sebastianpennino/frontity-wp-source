@@ -15,6 +15,13 @@ interface Init {
    * Whether the REST API belongs to a site hosted on wordpress.com.
    */
   isWpCom?: boolean;
+
+  /**
+   * The optional authentication information.
+   *
+   * This can be e.g. A Basic Authentication string or a Bearer token.
+   */
+  auth?: string;
 }
 
 /**
@@ -68,6 +75,7 @@ interface Get {
 class Api {
   api = "";
   isWpCom = false;
+  auth = "";
 
   /**
    * The initialization method of the class.
@@ -75,9 +83,12 @@ class Api {
    * @param this - The instance of the {@link Api}.
    * @param params - Defined in {@link Init}.
    */
-  init(this: Api, { api, isWpCom = false }: Init) {
+  init(this: Api, { api, isWpCom = false, auth = false }: Init) {
     this.api = api;
     this.isWpCom = isWpCom;
+    if (auth) {
+      this.auth = auth;
+    }
   }
 
   /**
@@ -91,7 +102,7 @@ class Api {
    */
   get(
     this: Api,
-    { endpoint, params, api = this.api, isWpCom = this.isWpCom, auth }: Get
+    { endpoint, params, api = this.api, isWpCom = this.isWpCom, auth = this.auth }: Get
   ): Promise<Response> {
     // Ensure there is a final slash
     const baseUrl = api.replace(/\/?$/, "/");
